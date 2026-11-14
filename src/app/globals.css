@@ -1,26 +1,186 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand navy, drawn from the Air Force shield */
+  --color-ink: #03111b;
+  --color-navy-950: #051824;
+  --color-navy-900: #071f2e;
+  --color-navy-800: #0b2a3d;
+  --color-navy-700: #12384f;
+  --color-navy-600: #1c4a66;
+
+  /* Brand sky blue, drawn from the Air Force wings */
+  --color-sky-200: #c9eefc;
+  --color-sky-300: #9ee0fa;
+  --color-sky-400: #6dcff6;
+  --color-sky-500: #38b6ea;
+  --color-sky-600: #1795cc;
+  --color-sky-700: #0f77a6;
+
+  /* Light surfaces */
+  --color-paper: #f3f6f8;
+  --color-mist: #e2e9ee;
+  --color-steel: #5b7183;
+
+  --font-display: var(--font-barlow-condensed), "Arial Narrow", Arial, sans-serif;
+  --font-sans: var(--font-inter), system-ui, Arial, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, Menlo, monospace;
+
+  --animate-marquee: marquee 60s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: #ffffff;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-sky-400);
+  color: var(--color-ink);
+}
+
+@layer components {
+  /* Small mono label that sits above a heading */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-sky-400);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+  }
+  .on-light .eyebrow {
+    color: var(--color-sky-700);
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.005em;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.95rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      color 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--color-sky-400);
+    color: var(--color-ink);
+  }
+  .btn-primary:hover {
+    background: var(--color-sky-300);
+  }
+  .btn-ghost {
+    border-color: rgb(255 255 255 / 0.28);
+    color: #ffffff;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-sky-400);
+    color: var(--color-sky-300);
+  }
+  .btn-dark {
+    background: var(--color-navy-900);
+    color: #ffffff;
+  }
+  .btn-dark:hover {
+    background: var(--color-navy-700);
+  }
+  .btn-outline-dark {
+    border-color: rgb(7 31 46 / 0.3);
+    color: var(--color-navy-900);
+  }
+  .btn-outline-dark:hover {
+    border-color: var(--color-sky-700);
+    color: var(--color-sky-700);
+  }
+
+  /* Faint chart grid used behind dark sections */
+  .chart-grid {
+    background-image:
+      linear-gradient(rgb(109 207 246 / 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(109 207 246 / 0.055) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .field {
+    width: 100%;
+    background: rgb(255 255 255 / 0.04);
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: 2px;
+    padding: 0.8rem 0.9rem;
+    font-size: 0.95rem;
+    color: #ffffff;
+    transition: border-color 0.15s ease;
+  }
+  .field::placeholder {
+    color: rgb(255 255 255 / 0.35);
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-sky-400);
+  }
+  select.field option {
+    color: var(--color-ink);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sky-400);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee {
+    animation: none;
+  }
 }

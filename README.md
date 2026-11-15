@@ -1,7 +1,7 @@
 # Air Force Mechanical
 
 Marketing site for Air Force Mechanical, the commercial division of Air Force HVAC. Live at
-[airforcemechanical.co](https://airforcemechanical.co).
+[airforcemechanical.co](https://www.airforcemechanical.co).
 
 Built with Next.js (App Router) and Tailwind CSS, deployed on Vercel.
 

@@ -1,7 +1,7 @@
 export const SITE = {
   name: "Air Force Mechanical",
   legalName: "Air Force HVAC, Inc.",
-  url: "https://airforcemechanical.co",
+  url: "https://www.airforcemechanical.co",
   tagline: "Your Property, Our Mission.",
   description:
     "Air Force Mechanical is the commercial division of Air Force HVAC: pre-acquisition diligence, portfolio replacement programs and planned maintenance for multifamily, office, retail and industrial owners.",
